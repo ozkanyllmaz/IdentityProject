@@ -1,0 +1,51 @@
+﻿@model IdentityProject.Dtos.SendMessageDto
+
+@{
+    ViewData["Title"] = "SendMessage";
+    Layout = "~/Views/Shared/_Default.cshtml";
+}
+
+<div class="right-part mail-compose bg-white">
+    <div class="p-20 border-bottom">
+        <div class="d-flex align-items-center">
+            <div>
+                <h4>Oluştur</h4>
+                <span>Yeni Mesaj Oluştur</span>
+            </div>
+        </div>
+    </div>
+    <!-- Action part -->
+    <!-- Button group part -->
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="email" asp-for="ReceiverEmail" class="form-control"
+                       placeholder="Kime">
+            </div>
+            <div class="form-group">
+                <input type="text" asp-for="Subject"  class="form-control"
+                       placeholder="Konu">
+            </div>
+            <div class="form-group">
+                <select asp-for="CategoryId" asp-items="@ViewBag.Categories" class="form-control">
+                    <option value="">Lütfen Kategori Seçiniz</option>
+                </select>
+            </div>
+            <textarea id="summernote" asp-for="MessageDetail"></textarea>
+
+            <h4>Ekler</h4>
+            <div class="form-group">
+                <div class="custom-file">
+                    <input type="file" asp-for="Attachments" class="form-control" multiple>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success m-t-20">
+                <i class="far fa-envelope"></i>
+                Gönder
+            </button>
+            <a href="/Message/Inbox" class="btn btn-dark m-t-20">İptal</a>
+        </form>
+        <!-- Action part -->
+    </div>
+</div>
+

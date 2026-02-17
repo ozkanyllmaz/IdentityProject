@@ -1,0 +1,59 @@
+﻿
+@{
+    Layout = null;
+    var currentAction = ViewContext.RouteData.Values["Action"]?.ToString();
+    var messagePages = new List<string> { "Inbox", "Starred", "Sendbox", "MessageDetails", "SendMessage", "ListByCategory" };
+
+    
+}
+
+<div class="left-part bg-white">
+    <a class="ti-menu ti-close btn btn-success show-left-part d-block d-md-none" href="javascript:void(0)"></a>
+    <div class="scrollable" style="height:100%;">
+        @if (messagePages.Contains(currentAction))
+        {
+            <div class="p-15">
+                <a id="compose_mail" class="waves-effect waves-light btn btn-danger d-block" href="/Message/SendMessage">Oluştur</a>
+            </div>
+        }
+
+        <div class="divider"></div>
+        <ul class="list-group">
+            <li>
+                <small class="p-15 grey-text text-lighten-1 db">Klasörler</small>
+            </li>
+            <li class="list-group-item">
+                <a href="/Message/Inbox" class="list-group-item-action @(currentAction == "Inbox" ? "active" : "")">
+                    <i class="mdi mdi-inbox"></i>
+                    Gelen Kutusu
+                    @if (ViewBag.UnreadMessagesCount > 0)
+                    {
+                        <span class="label label-success float-right">@ViewBag.UnreadMessagesCount</span>
+                    }
+                </a>
+            </li>
+            <li class="list-group-item">
+                <a href="/Message/Starred" class="list-group-item-action @(currentAction == "Starred" ? "active" : "")">
+                    <i class="mdi mdi-star"></i>
+                    Yıldızlı
+                    @if (ViewBag.StarredMessagesCount > 0)
+                    {
+                        <span class="label label-success float-right">@ViewBag.StarredMessagesCount</span>
+                    }
+                </a>
+            </li>
+            <li class="list-group-item">
+                <a href="/Message/Sendbox" class="list-group-item-action @(currentAction == "Sendbox" ? "active" : "")">
+                    <i class="mdi mdi-email"></i>
+                    Gönderilen Mesajlar
+                </a>
+            </li>
+            <li class="list-group-item">
+                <hr>
+            </li>
+
+            @await Component.InvokeAsync("CategoryList")
+
+        </ul>
+    </div>
+</div>

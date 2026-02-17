@@ -1,0 +1,88 @@
+﻿@model List<IdentityProject.Entities.Message>
+
+@{
+    ViewData["Title"] = "ListByCategory";
+    Layout = "~/Views/Shared/_Default.cshtml";
+}
+
+<div class="right-part mail-list bg-white">
+    <!-- Button group part -->
+    <div class="p-15 d-flex align-items-center do-block">
+        <div class="btn-group my-1">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input sl-all" id="cs">
+                <label class="custom-control-label" for="cs">&nbsp;</label>
+            </div>
+        </div>
+        <div class="btn-group mr-2" role="group" aria-label="Button group with nested dropdown">
+            <div class="btn-group" role="group">
+                <button id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Filter
+                </button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <a class="dropdown-item" href="javascript:void(0)">Dropdown link</a>
+                    <a class="dropdown-item" href="javascript:void(0)">Dropdown link</a>
+                </div>
+            </div>
+        </div>
+        <div class="ml-auto">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default waves-effect"><i class="fa fa-chevron-left"></i></button>
+                <button type="button" class="btn btn-default waves-effect"><i class="fa fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+    <!-- Action part -->
+    <!-- Mail list-->
+    <div class="table-responsive">
+        <table class="table email-table no-wrap table-hover v-middle">
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="unread">
+                        <!-- label -->
+                        <td class="chb">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="cst1">
+                                <label class="custom-control-label" for="cst1">&nbsp;</label>
+                            </div>
+                        </td>
+                        <!-- star -->
+                        <td onclick="toggleStar(@item.MessageId)" style="cursor: pointer;" class="starred">
+                            <i id="star-icon-@item.MessageId"
+                               class="@(item.IsReceiverStarred ? "fas" : "far") fa-star text-warning ">
+                            </i>
+                        </td>
+                        <!-- User -->
+                        <td class="user-image">
+                            <img src="@(ViewBag.SenderNotEmpty = true ? item.Sender.ImageUrl : item.Receiver.ImageUrl)" alt="user"
+                                 class="rounded-circle" width="30">
+                        </td>
+                        <td class="user-name">
+                            <h6 class="m-b-0">@(ViewBag.SenderNotEmpty = true ? item.Sender.Name + @item.Sender.Surname : item.Receiver.Name + @item.Receiver.Surname)</h6>
+                        </td>
+                        <!-- Message -->
+                        <td class="max-texts">
+                            <a class="link" href="/Message/MessageDetails/@item.MessageId">
+                                <span class="label label-@item.Category.Label m-r-10">@item.Category.Name</span>
+                                <span class="blue-grey-text text-darken-4">@item.Subject</span>
+                                @item.MessageDetail
+                            </a>
+                        </td>
+                        <!-- Attachment -->
+                        <td class="clip"><i class="fa fa-paperclip"></i></td>
+                        <!-- Time -->
+                        <td class="time"> @item.SendDate.ToString("dd-MM HH-mm")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="p-15 m-t-30">
+        <nav aria-label="Page navigation example">
+
+        </nav>
+    </div>
+</div>
+

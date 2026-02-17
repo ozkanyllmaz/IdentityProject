@@ -1,0 +1,58 @@
+﻿@model IdentityProject.Dtos.UserStatisticsDto
+
+@{
+    Layout = null;
+}
+
+<h4 class="font-medium m-t-30">İstatistikler</h4>
+<hr>
+
+<div class="row">
+    <div class="col-6 mb-3">
+        <div class="card bg-info text-white text-center p-2">
+            <div class="card-body p-1">
+                <h3 class="m-0 text-white">@Model.TotalIncomingMessages</h3>
+                <small>Gelen</small>
+                <div class="mt-2">
+                    <i class="mdi mdi-inbox font-20"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-6 mb-3">
+        <div class="card bg-cyan text-white text-center p-2">
+            <div class="card-body p-1">
+                <h3 class="m-0 text-white">@Model.TotalOutgoingMessages</h3>
+                <small>Gönderilen</small>
+                <div class="mt-2">
+                    <i class="mdi mdi-send font-20"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-6 mb-3">
+        <div class="card bg-orange text-white text-center p-2">
+            <div class="card-body p-1">
+                <h3 class="m-0 text-white">@Model.UnreadMessages</h3>
+                <small>Okunmamış</small>
+                <div class="mt-2">
+                    <i class="mdi mdi-email-open font-20"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-6 mb-3">
+        <div class="card bg-success text-white text-center p-2">
+            <div class="card-body p-1">
+                <h3 class="m-0 text-white">@Model.StarredMessages</h3>
+                <small>Yıldızlı</small>
+                <div class="mt-2">
+                    <i class="mdi mdi-star font-20"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

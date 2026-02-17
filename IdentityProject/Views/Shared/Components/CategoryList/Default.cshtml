@@ -1,0 +1,20 @@
+﻿@model List<IdentityProject.Entities.Category>
+
+@{
+    Layout = null;
+}
+
+<li>
+    <small class="p-15 grey-text text-lighten-1 db">Etiketler</small>
+</li>
+
+@foreach (var item in Model)
+{
+    <li class="list-group-item">
+        <a href="/Message/ListByCategory/@item.CategoryId" class="list-group-item-action">
+            <i class="text-@item.Label mdi mdi-checkbox-blank-circle"></i>
+            @item.Name
+        </a>
+    </li>
+}
+

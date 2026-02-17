@@ -1,0 +1,52 @@
+﻿@model IdentityProject.Entities.AppUser
+
+@{
+    Layout = null;
+}
+
+<ul class="navbar-nav float-right">
+    <!-- ============================================================== -->
+    <!-- User profile and search -->
+    <!-- ============================================================== -->
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle waves-effect waves-dark pro-pic" href="" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+            <span class="mr-3 font-normal d-none d-sm-inline-block pro-name">
+                <span></span>
+                @Model.Name @Model.Surname
+            </span>
+            <img src="@Model.ImageUrl" alt="user" class="rounded-circle" width="40">
+        </a>
+        <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
+            <div class="d-flex no-block align-items-center p-3 bg-light mb-2">
+                <div class="">
+                    <img src="@Model.ImageUrl" alt="user" class="rounded-circle"
+                         width="60">
+                </div>
+                <div class="ml-2">
+                    <h4 class="mb-0">@Model.Name @Model.Surname</h4>
+                    <p class="mb-0">@Model.Email</p>
+                </div>
+            </div>
+            <div class="profile-dis scrollable">
+                <a class="dropdown-item" href="/Profile/UserProfile">
+                    <i class="ti-user mx-1"></i> Profil
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/Login/Logout">
+                    <i class="fa fa-power-off mx-1"></i> Çıkış Yap
+                </a>
+            </div>
+        </div>
+    </li>
+    <!-- ============================================================== -->
+    <!-- User profile and search -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Messages -->
+    <!-- ============================================================== -->
+    @await Component.InvokeAsync("NavbarMessage")
+    <!-- ============================================================== -->
+    <!-- End Messages -->
+    <!-- ============================================================== -->
+</ul>

@@ -6,9 +6,31 @@ namespace IdentityProject.Context
 {
     public class EmailContext : IdentityDbContext<AppUser>
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public EmailContext(DbContextOptions<EmailContext> options) : base(options)
         {
-            optionsBuilder.UseSqlServer("server=LENOVO\\SQLEXPRESS; initial catalog= Project2EmailDb; integrated security=true; TrustServerCertificate=true;");
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            //sender
+            builder.Entity<Message>()
+                .HasOne(x => x.Sender)
+                .WithMany(x => x.SentMessages)
+                .HasForeignKey(x => x.SenderId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            //receiver
+            builder.Entity<Message>()
+                .HasOne(x => x.Receiver)
+                .WithMany(x => x.ReceivedMessages)
+                .HasForeignKey(x => x.ReceiverId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+        }
+
+        public DbSet<Message> Messages { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Attachment> Attachments { get; set; }
     }
 }

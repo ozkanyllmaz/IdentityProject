@@ -1,6 +1,30 @@
+using IdentityProject.Context;
+using IdentityProject.Entities;
+using IdentityProject.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+var connectionString = "server=LENOVO\\SQLEXPRESS; initial catalog=Project2EmailDb; integrated security=true; TrustServerCertificate=true;";
+
+builder.Services.AddDbContext<EmailContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<EmailContext>().AddErrorDescriber<CustomIdentityValidator>();
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Login/UserLogin";
+    options.LogoutPath = "/Login/Logout";
+    options.AccessDeniedPath = "/Login/AccessDenied";
+});
+
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequiredLength = 8;
+});
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -17,11 +41,11 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Login}/{action=UserLogin}/{id?}");
 
 app.Run();

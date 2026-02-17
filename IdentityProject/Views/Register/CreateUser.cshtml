@@ -4,26 +4,278 @@
     Layout = null;
 }
 
-<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+<!DOCTYPE html>
+<html dir="ltr">
 
-<form method="post">
-    <div class="container">
-        <br /><br />
-        <h3>Yeni Kullanıcı</h3>
-        <label>Adınız</label>
-        <input type="text" asp-for="Name" class="form-control" />
-        <br />
-        <label>Soyad</label>
-        <input type="text" asp-for="Surname" class="form-control" />
-        <br />
-        <label>Kullanıcı Adı</label>
-        <input type="text" asp-for="Username" class="form-control" />
-        <br />
-        <label>Email</label>
-        <input type="text" asp-for="Email" class="form-control" />
-        <br />
-        <label>Şifreniz</label>
-        <input type="text" asp-for="Password" class="form-control" />
-        <br />
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="~/mendy-admin/package/assets/images/favicon.png">
+    <title>Mendy Admin Template - The Ultimate Multipurpose admin template</title>
+    <!-- Custom CSS -->
+    <link href="~/mendy-admin/package/dist/css/style.min.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <div class="preloader">
+            <div class="lds-ripple">
+                <div class="lds-pos"></div>
+                <div class="lds-pos"></div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Login box.scss -->
+        <!-- ============================================================== -->
+        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url(/mendy-admin/package/assets/images/big/auth-bg.jpg) no-repeat center center;">
+            <div class="auth-box">
+                <div id="registerForm">
+                    <div class="logo">
+                        <span class="d-block"><img src="~/mendy-admin/package/assets/images/logo-icon.png" alt="logo" /></span>
+                        <h5 class="font-medium mb-3">Mendy Admin Sistemine Kayıt Ol</h5>
+                    </div>
+                    <!-- Form -->
+                    <div class="row">
+                        <div class="col-12">
+                            <form method="post" class="form-horizontal">
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <input asp-for="Name" class="form-control form-control-lg" type="text" required=" "
+                                               placeholder="Ad">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <input asp-for="Surname" class="form-control form-control-lg" type="text" required=" "
+                                               placeholder="Soyad">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <input asp-for="Username" class="form-control form-control-lg" type="text" required=" "
+                                               placeholder="Kullanıcı Adı">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <input asp-for="Email" class="form-control form-control-lg" type="text" required=" "
+                                               placeholder="Mail">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <input asp-for="Password" class="form-control form-control-lg" type="password" required=" "
+                                               placeholder="Şifre">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <input asp-for="ConfirmPassword" class="form-control form-control-lg" type="password" required=" "
+                                               placeholder="Şifre Tekrar">
+
+                                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-12 ">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" asp-for="AcceptTerms" class="custom-control-input" id="customCheck1">
+                                            <label class="custom-control-label" for="customCheck1">
+                                                <a href="javascript:void(0)" class="link" data-toggle="modal" data-target="#termsModal">Kullanım koşullarını</a> kabul ediyorum
+                                            </label>
+                                        </div>
+                                        <span asp-validation-for="AcceptTerms" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row form-group text-center">
+                                    <div class="col-12">
+                                        <button id="to-confirm" class="btn btn-block btn-lg bg-gradient-primary text-white" type="submit ">
+                                            KAYIT OL
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row form-group mb-0 mt-2">
+                                    <div class="col-12 text-center ">
+                                        Zaten bir hesabınız var mı? <a href="/Login/UserLogin" class="text-primary ml-1">
+                                            <b>
+                                                Giriş Yap
+                                            </b>
+                                        </a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div id="confirmForm" style="display:none;">
+                    <div class="logo">
+                        <span class="db"><img src="/mendy-admin/package/assets/images/logo-icon.png" alt="logo" /></span>
+                        <h5 class="font-medium m-b-20">Kod Doğrulama</h5>
+                        <span>Kod mail adresinize iletildi lütfen kontrol ediniz.</span>
+                    </div>
+                    <div class="row m-t-20">
+                        <!-- Form -->
+                        <form class="col-12" method="post" asp-action="ConfirmEmail">
+                            <input type="hidden" name="email" value="@ViewBag.Email" />
+                            <!-- email -->
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <input class="form-control form-control-lg" type="text" name="code" required="" placeholder="Doğrulama Kodu">
+                                </div>
+                            </div>
+                            
+                            <!-- pwd -->
+                            <div class="row m-t-20">
+                                <div class="col-12">
+                                    <button class="btn btn-block btn-lg bg-gradient-primary text-white" type="submit">
+                                        Doğrula
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row m-t-10">
+                                <div class="col-12 text-center">
+                                    <a href="/Register/CreateUser" id="to-register" class="text-dark"><i class="fa fa-arrow-left m-r-5"></i> Tekrar Kayıt Ol</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Login box.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
     </div>
-</form>
+    <!-- ============================================================== -->
+    <!-- All Required js -->
+    <!-- ============================================================== -->
+    <script src="~/mendy-admin/package/assets/libs/jquery/dist/jquery.min.js "></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="~/mendy-admin/package/assets/libs/popper.js/dist/umd/popper.min.js "></script>
+    <script src="~/mendy-admin/package/assets/libs/bootstrap/dist/js/bootstrap.min.js "></script>
+    <!-- ============================================================== -->
+    <!-- This page plugin js -->
+    <!-- ============================================================== -->
+    <script>
+        $('[data-toggle="tooltip "]').tooltip();
+        $(".preloader ").fadeOut();
+
+        var showConfirm = '@(ViewBag.ShowConfirm == true ? "true" : "false")';
+
+        //sayfa ilk yüklendiğinde 
+        if(showConfirm === "true"){
+            $("#registerForm").hide();
+            $("#confirmForm").fadeIn();
+        }
+        else
+        {
+            $("#registerForm").fadeIn();
+            $("#confirmForm").hide();
+        }
+
+        //manuel gecisler
+        $('#to-confirm').on("click", function () {
+            $("#confirmform").slideUp();
+            $("#registerform").fadeIn();
+        });
+    </script>
+
+    <div class="modal fade" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="termsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="termsModalLabel">Kullanım Koşulları</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body text-justify">
+                    <h5 class="font-weight-bold">1. TARAFLAR VE KONU</h5>
+                    <p>
+                        İşbu Kullanım Koşulları ve Üyelik Sözleşmesi ("Sözleşme"), <strong>[PROJE ADINIZ]</strong> ("Platform") ile bu platforma üye olan kullanıcı ("Kullanıcı") arasında, üyelik ve kullanım şartlarını belirlemek amacıyla düzenlenmiştir. Siteye kayıt olan her kullanıcı, bu sözleşmedeki şartları peşinen kabul etmiş sayılır.
+                    </p>
+
+                    <h5 class="font-weight-bold">2. ÜYELİK VE HESAP GÜVENLİĞİ</h5>
+                    <ul class="list-unstyled">
+                        <li><strong>2.1.</strong> Kullanıcı, üyelik formunda belirttiği bilgilerin (Ad, Soyad, E-posta vb.) doğru ve güncel olduğunu taahhüt eder. Yanlış bilgi verilmesinden doğacak zararlardan kullanıcı sorumludur.</li>
+                        <li><strong>2.2.</strong> Kullanıcı, şifresinin güvenliğini sağlamakla yükümlüdür. Şifrenin üçüncü şahısların eline geçmesi durumunda oluşabilecek zararlardan Platform sorumlu tutulamaz.</li>
+                        <li><strong>2.3.</strong> Kullanıcı, hesabını başkasına devredemez veya satamaz.</li>
+                    </ul>
+
+                    <h5 class="font-weight-bold">3. KULLANIM KOŞULLARI</h5>
+                    <p>
+                        Kullanıcı, platformu kullanırken aşağıdaki kurallara uymayı kabul eder:
+                    </p>
+                    <ul>
+                        <li>Türkiye Cumhuriyeti yasalarına ve genel ahlak kurallarına aykırı içerik paylaşmamak.</li>
+                        <li>Platformun güvenliğini tehdit edecek, yazılımına zarar verecek (hack, bot kullanımı, DDOS vb.) faaliyetlerde bulunmamak.</li>
+                        <li>Diğer kullanıcıları rahatsız edici, hakaret içeren veya spam niteliğinde mesajlar göndermemek.</li>
+                    </ul>
+
+                    <h5 class="font-weight-bold">4. GİZLİLİK VE KİŞİSEL VERİLER</h5>
+                    <p>
+                        Platform, kullanıcıların kişisel verilerini 6698 sayılı Kişisel Verilerin Korunması Kanunu'na (KVKK) uygun olarak saklar ve işler. Kullanıcı bilgileri, yasal zorunluluklar haricinde üçüncü şahıslarla paylaşılmaz.
+                    </p>
+
+                    <h5 class="font-weight-bold">5. FİKRİ MÜLKİYET HAKLARI</h5>
+                    <p>
+                        Platformda yer alan tasarım, logo, yazılım kodları ve içeriklerin tüm hakları <strong>[FİRMA VEYA PROJE ADI]</strong>'na aittir. İzinsiz kopyalanamaz ve ticari amaçla kullanılamaz.
+                    </p>
+
+                    <h5 class="font-weight-bold">6. SÖZLEŞME DEĞİŞİKLİKLERİ</h5>
+                    <p>
+                        Platform yönetimi, işbu sözleşme maddelerinde dilediği zaman değişiklik yapma hakkını saklı tutar. Değişiklikler sitede yayınlandığı tarihte yürürlüğe girer.
+                    </p>
+
+                    <h5 class="font-weight-bold">7. YETKİLİ MAHKEME</h5>
+                    <p>
+                        İşbu sözleşmenin uygulanmasından doğabilecek uyuşmazlıkların çözümünde <strong>[ŞEHİR ADI]</strong> Mahkemeleri ve İcra Daireleri yetkilidir.
+                    </p>
+
+                    <br>
+                    <p class="text-muted small">
+                        Son Güncelleme Tarihi: <span id="currentDate"></span>
+                    </p>
+                </div>
+
+                <script>
+                    document.getElementById('currentDate').innerText = new Date().toLocaleDateString();
+                </script>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

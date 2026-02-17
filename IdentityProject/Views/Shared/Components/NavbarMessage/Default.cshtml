@@ -1,0 +1,55 @@
+﻿@model List<IdentityProject.Entities.Message>
+
+@{
+    Layout = null;
+}
+
+
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle waves-effect waves-dark" href="" id="2" data-toggle="dropdown"
+       aria-haspopup="true" aria-expanded="false">
+        <i data-feather="mail"></i>
+        <span class="badge badge-pill badge-danger noti">@Model.Count(x => x.IsStatus == false && x.ReceiverId == ViewBag.UserId)</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown"
+         aria-labelledby="2">
+        <ul class="list-style-none">
+            <li>
+                <div class="drop-title bg-light">
+                    <h4 class="mb-0 mt-1">
+                        <span>
+                            <i>@Model.Count(x => x.IsStatus == false && x.ReceiverId == ViewBag.UserId)</i>
+                        </span>
+                        Yeni Mesaj
+                    </h4>
+                </div>
+            </li>
+            <li>
+                <div class="message-center message-body">
+                    <!-- Message -->
+                    @foreach(var item in Model)
+                    {
+                       <a href="/Message/MessageDetails/@item.MessageId" class="message-item">
+                        <span class="user-img">
+                            <img src="@item.Sender.ImageUrl" alt="user" class="rounded-circle">
+                            <span class="profile-status online pull-right"></span>
+                        </span>
+                        <div class="mail-contnet">
+                            <h5 class="message-title">@item.Sender.Name @item.Sender.Surname</h5>
+                            <span class="mail-desc">@item.Subject</span>
+                            <span class="time">@item.SendDate.ToString("HH:mm")</span>
+                        </div>
+                    </a> 
+                    }
+                    
+                </div>
+            </li>
+            <li>
+                <a class="nav-link text-center link text-dark" href="/Message/Inbox">
+                    <b>Tüm maillere git</b>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</li>

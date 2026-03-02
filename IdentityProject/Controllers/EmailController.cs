@@ -32,7 +32,7 @@ namespace IdentityProject.Controllers
 
             SmtpClient client = new SmtpClient();
             client.Connect("smtp.gmail.com", 587, false);
-            client.Authenticate("ozkanyilmaz.dev@gmail.com", "pnug mjpm pljq fmic");
+            client.Authenticate("ozkanyilmaz.dev@gmail.com", "buraya api key gelecek");
             client.Send(mimeMessage);
             client.Disconnect(true);
 
